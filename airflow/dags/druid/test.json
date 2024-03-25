@@ -1,0 +1,48 @@
+{
+    "type": "index_parallel",
+    "spec": {
+        "ioConfig": {
+            "type": "index_parallel",
+            "inputSource": {
+              "type": "s3",
+              "prefixes": [
+                "s3://pjm-project-datalake/gold"
+              ],
+              "filter": "*.parquet",
+              "endpointConfig": {
+                "url": "https://s3.ap-northeast-2.amazonaws.com",
+                "signingRegion": "ap-northeast-2"
+              },
+              "properties": {
+                "accessKeyId": "{{ var.value.AWS_ACCESS_KEY }}",
+                "secretAccessKey": "{{ var.value.AWS_SECRET_KEY }}"
+              }
+            },
+            "inputFormat": {
+              "type": "parquet"
+            },
+            "appendToExisting": true
+          },
+          "tuningConfig": {
+            "type": "index_parallel"
+          },
+      "dataSchema": {
+        "dataSource": "user_engagement_metrics_basic",
+        "timestampSpec": {
+          "column": "event_date",
+          "format": "auto"
+        },
+        "dimensionsSpec": {
+          "dimensions": []
+        },
+        "metricsSpec": [],
+        "granularitySpec": {
+          "type": "uniform",
+          "segmentGranularity": "DAY",
+          "queryGranularity": "none",
+          "rollup": false
+        }
+      }
+    }
+  }
+  

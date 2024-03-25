@@ -1,0 +1,72 @@
+{
+    "type": "index_parallel",
+    "spec": {
+      "ioConfig": {
+        "type": "index_parallel",
+        "inputSource": {
+          "type": "s3",
+          "prefixes": [
+            "s3://pjm-project-datalake/gold"
+          ],
+          "endpointConfig": {
+            "url": "https://s3.ap-northeast-2.amazonaws.com",
+            "signingRegion": "ap-northeast-2"
+          },
+          "properties": {
+            "accessKeyId": "{{ var.value.AWS_ACCESS_KEY }}",
+            "secretAccessKey": "{{ var.value.AWS_SECRET_KEY }}"
+          }
+        },
+        "inputFormat": {
+          "type": "parquet"
+        },
+        "appendToExisting": true
+      },
+      "dataSchema": {
+        "dataSource": "eventsim_user",
+        "timestampSpec": {
+          "column": "event_date",
+          "format": "auto"
+        },
+        "dimensionsSpec": {
+          "dimensions": [
+            {
+              "name": "userId",
+              "type": "string"
+            },
+            {
+              "name": "event_dayofweek",
+              "type": "long"
+            },
+            {
+              "name": "first_event_hour",
+              "type": "long"
+            }
+          ]
+        },
+        "metricsSpec": [
+          {
+            "type": "count",
+            "name": "events_count"
+          },
+          {
+            "type": "longSum",
+            "name": "total_sessions",
+            "fieldName": "daily_sessions"
+          },
+          {
+            "type": "doubleSum",
+            "name": "total_items_per_session",
+            "fieldName": "avg_items_per_session"
+          }
+        ],
+        "granularitySpec": {
+          "type": "uniform",
+          "segmentGranularity": "DAY",
+          "queryGranularity": "DAY",
+          "rollup": true
+        }
+      }
+    }
+  }
+  
