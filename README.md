@@ -19,7 +19,7 @@
 
 ### 아키텍쳐
 
-<img width="738" alt="image" src="https://github.com/ParkJJungmIn/flab-data-pipeline/img/ar.png">
+<img width="738" alt="image" src="https://github.com/ParkJJungmIn/flab-data-pipeline/blob/main/img/ar.png?raw=true">
 
 
 ### 사용기술 및 툴
@@ -36,7 +36,7 @@
 
 ### 대쉬보드
 
-![streamify-2023-09-20T17-06-21 303Z](https://github.com/ParkJJungmIn/flab-data-pipeline/img/dashboard.png)
+![](https://github.com/ParkJJungmIn/flab-data-pipeline/blob/main/img/dashboard.png?raw=true)
 
 ---
 
