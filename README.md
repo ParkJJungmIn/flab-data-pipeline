@@ -42,7 +42,7 @@
 
 ## 블로그
 
-
+Spark serializer를 통한 성능개션 [Link](https://park-dev-diary.tistory.com/35)
 
 ---
 
